@@ -25,6 +25,7 @@
       max-width: 100%;
       height: auto;
       border: 1px solid #ddd;
+      display: none; /* Hide preview image initially */
     }
   </style>
 </head>
@@ -33,11 +34,11 @@
   <form id="inputForm">
     <label for="image1">Upload Image 1:</label>
     <input type="file" id="image1" name="image1" accept="image/*" required>
-    <img id="preview1" class="image-preview" alt="Preview of Image 1">
+    <img id="preview1" class="image-preview" alt="">
 
     <label for="image2">Upload Image 2:</label>
     <input type="file" id="image2" name="image2" accept="image/*" required>
-    <img id="preview2" class="image-preview" alt="Preview of Image 2">
+    <img id="preview2" class="image-preview" alt="">
 
     <label for="prompt">Enter Prompt:</label>
     <input type="text" id="prompt" name="prompt" placeholder="Type your prompt here..." required>
@@ -54,10 +55,9 @@
       const preview = document.getElementById('preview1');
       if (file) {
         preview.src = URL.createObjectURL(file);
-        preview.style.display = 'block';
+        preview.style.display = 'block'; // Show the image
       } else {
-        preview.src = '';
-        preview.style.display = 'none';
+        preview.style.display = 'none'; // Hide the image if no file is selected
       }
     });
 
@@ -67,10 +67,9 @@
       const preview = document.getElementById('preview2');
       if (file) {
         preview.src = URL.createObjectURL(file);
-        preview.style.display = 'block';
+        preview.style.display = 'block'; // Show the image
       } else {
-        preview.src = '';
-        preview.style.display = 'none';
+        preview.style.display = 'none'; // Hide the image if no file is selected
       }
     });
 
