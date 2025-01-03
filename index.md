@@ -20,6 +20,12 @@
       width: 100%;
       box-sizing: border-box;
     }
+    .image-preview {
+      margin-top: 10px;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+    }
   </style>
 </head>
 <body>
@@ -27,9 +33,11 @@
   <form id="inputForm">
     <label for="image1">Upload Image 1:</label>
     <input type="file" id="image1" name="image1" accept="image/*" required>
+    <img id="preview1" class="image-preview" alt="Preview of Image 1">
 
     <label for="image2">Upload Image 2:</label>
     <input type="file" id="image2" name="image2" accept="image/*" required>
+    <img id="preview2" class="image-preview" alt="Preview of Image 2">
 
     <label for="prompt">Enter Prompt:</label>
     <input type="text" id="prompt" name="prompt" placeholder="Type your prompt here..." required>
@@ -40,6 +48,33 @@
   <div id="response" style="margin-top: 20px;"></div>
 
   <script>
+    // Preview image 1
+    document.getElementById('image1').addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      const preview = document.getElementById('preview1');
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+      } else {
+        preview.src = '';
+        preview.style.display = 'none';
+      }
+    });
+
+    // Preview image 2
+    document.getElementById('image2').addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      const preview = document.getElementById('preview2');
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+      } else {
+        preview.src = '';
+        preview.style.display = 'none';
+      }
+    });
+
+    // Form submission
     document.getElementById('inputForm').addEventListener('submit', async (event) => {
       event.preventDefault();
 
@@ -64,5 +99,3 @@
   </script>
 </body>
 </html>
-
-
